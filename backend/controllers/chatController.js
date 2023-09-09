@@ -6,9 +6,6 @@ const createChat = async (req, res) => {
     const { userOne, userTwo } = req.body;
     let users = [userOne, userTwo];
 
-    console.log(userOne);
-    console.log(userTwo);
-
     if (userOne > userTwo) {
         let temp = users[0];
         users[0] = users[1];
@@ -32,9 +29,16 @@ const createChat = async (req, res) => {
 
 const getChatLog = async (req, res) => {
     const { userOne, userTwo } = req.body;
+    let users = [userOne, userTwo];
+
+    if (userOne > userTwo) {
+        let temp = users[0];
+        users[0] = users[1];
+        users[1] = temp;
+    }
 
     try {
-        const chat = await Chat.find();
+        const chat = await Chat.findOne({users: {"$all": users}});
         res.status(200).json(chat.messages);
     } catch (error) {
         console.log(error.message);
@@ -44,5 +48,6 @@ const getChatLog = async (req, res) => {
 }
 
 module.exports = {
-    createChat
+    createChat,
+    getChatLog
 }
