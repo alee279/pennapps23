@@ -56,6 +56,7 @@ const addMessage = async (req, res) => {
             throw Error('Chat does not exists');
         }
         chat.messages.push({user, message});
+        await chat.save();
         res.status(200).json({user, message});
     } catch (error) {
         console.log(error.message);
