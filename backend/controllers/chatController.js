@@ -4,20 +4,26 @@ const Chat = require('../models/chatModel');
 
 const createChat = async (req, res) => {
     const { userOne, userTwo } = req.body;
+    let users = [userOne, userTwo];
 
-    if (userOne.localCompare(userTwo) > 0) {
-        const temp = userOne;
-        userOne = userTwo;
-        userTwo = temp;
+    console.log(userOne);
+    console.log(userTwo);
+
+    if (userOne > userTwo) {
+        let temp = users[0];
+        users[0] = users[1];
+        users[1] = temp;
     }
+    
 
     try {
-        const chat = await Chat.find({users: {"$all": [userOne, userTwo]}});
+        let chat = await Chat.findOne({users: {"$all": users}});
+        console.log(chat);
         if (chat) {
             throw Error('Chat already exists');
         }
 
-        chat = await this.create({ users : [userOne, userTwo] });
+        chat = await Chat.create({ users : [userOne, userTwo] });
         res.status(200).json(chat);
     } catch (error) {
         res.status(400).json({error: error.message});
