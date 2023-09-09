@@ -39,7 +39,24 @@ const getChatLog = async (req, res) => {
 
     try {
         const chat = await Chat.findOne({users: {"$all": users}});
-        res.status(200).json(chat.messages);
+        res.status(200).json(chat);
+    } catch (error) {
+        console.log(error.message);
+        res.status(400).json({error: error.message});
+    }
+    
+}
+
+const addMessage = async (req, res) => {
+    const { _id, message, user } = req.body;
+
+    try {
+        const chat = await Chat.findOne({_id});
+        if (!chat) {
+            throw Error('Chat does not exists');
+        }
+        chat.messages.push({user, message});
+        res.status(200).json({user, message});
     } catch (error) {
         console.log(error.message);
         res.status(400).json({error: error.message});
@@ -49,5 +66,6 @@ const getChatLog = async (req, res) => {
 
 module.exports = {
     createChat,
-    getChatLog
+    getChatLog,
+    addMessage
 }
