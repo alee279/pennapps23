@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
+const tokenRoutes = require('./routes/tokenRoutes');
 
 
 // express app
@@ -18,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/users/', userRoutes);
+app.use('/tokens/', tokenRoutes);
 
 // connect to database
 async function connectToMongoDB() {
