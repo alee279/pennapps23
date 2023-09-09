@@ -4,17 +4,16 @@ const validator = require('validator');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema ({
-    "firstName" : {type: String, required : true},
-    "lastName" : {type: String, required : true},
+    "username" : {type: String, required : true, unique: true},
     "email" : {type: String, required: true, unique: true},
     "password" : {type: String, required: true},
     "fluentLanguage" : {type: [String], required: true},
     "learningLanguage" : {type: [String], required: true}
 });
 
-UserSchema.statics.signup = async function(firstName, lastName, email, password, fluentLanguage, learningLanguage) {
+UserSchema.statics.signup = async function(username, email, password, fluentLanguage, learningLanguage) {
     // validation
-    if (!email || !password || !firstName || !lastName || !fluentLanguage || !learningLanguage) {
+    if (!email || !password || !username || !fluentLanguage || !learningLanguage) {
         throw Error('All fields must filled');
     }
     if (!validator.isEmail(email)) {
@@ -30,7 +29,13 @@ UserSchema.statics.signup = async function(firstName, lastName, email, password,
         throw Error('Email already in use');
     }
 
-    const user = await this.create({ firstName, lastName, email, password, fluentLanguage, learningLanguage });
+    const existingUser = await this.findOne({ username });
+    
+    if (existingUser) {
+        throw Error('Username already in use');
+    }
+
+    const user = await this.create({ username, email, password, fluentLanguage, learningLanguage });
 
     return user;
 }
