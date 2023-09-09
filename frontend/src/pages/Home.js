@@ -6,4 +6,12 @@ const Home = () => {
     )
 }
 
-export default Home
+export default function Home() {
+    const [users, setUsers] = useState([]);
+}
+
+// useEffect(() => {
+//     fetch(`http://${config.server_host}:${config.server_port}/`)
+//             .then(res => res.json())
+//             .then(resJson => setUsers(resJson));
+// })
