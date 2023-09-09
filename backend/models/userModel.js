@@ -15,9 +15,6 @@ UserSchema.statics.signup = async function(firstName, lastName, email, password)
     if (!email || !password || !firstName || !lastName) {
         throw Error('All fields must filled');
     }
-    if (username.length > 20) {
-        throw Error('Username is too long');
-    }
     if (!validator.isEmail(email)) {
         throw Error('Email is not valid');
     }
@@ -36,4 +33,4 @@ UserSchema.statics.signup = async function(firstName, lastName, email, password)
     return user;
 }
 
-module.export = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
