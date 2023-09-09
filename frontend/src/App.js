@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Pages
@@ -10,6 +9,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <div className="pages">
         <Routes>
           <Route path="/signup"
                  element={<SignUp/>}
@@ -21,6 +21,7 @@ function App() {
                  element={<ChatPage email="test@gmail.com" channel="Test Chat"/>}
           />
         </Routes>
+      </div>
       </BrowserRouter>
     </div>
   );
