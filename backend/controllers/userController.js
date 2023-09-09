@@ -38,6 +38,7 @@ const getUsers = async (req, res) => {
         // console.log(users)
         res.status(200).json({'returnedUsers':userArray});
         // res.status(200).json({username: user[0].username});
+
     } catch (error) {
         console.log(error.message);
         res.status(400).json({error: error.message});

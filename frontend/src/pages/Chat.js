@@ -1,4 +1,7 @@
-const Chat = () => {
+import { useEffect, useState } from "react"
+
+const ChatPage = (props) => {
+
     return (
         <div className="chat-page">
             <h1>Chat</h1>
@@ -6,4 +9,4 @@ const Chat = () => {
     )
 }
 
-export default Chat
+export default ChatPage

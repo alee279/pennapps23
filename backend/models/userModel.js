@@ -14,6 +14,7 @@ const UserSchema = new Schema ({
 UserSchema.statics.signup = async function(username, email, password, fluentLanguage, learningLanguage) {
     // validation
     if (!email || !password || !username || !fluentLanguage || !learningLanguage) {
+
         throw Error('All fields must filled');
     }
     if (!validator.isEmail(email)) {
