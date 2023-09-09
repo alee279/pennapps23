@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Pages
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
-import Chat from './pages/Chat';
+import ChatPage from './pages/Chat';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
                  element={<Home/>}
           />
           <Route path="/chat"
-                 element={<Chat/>}
+                 element={<ChatPage email="test@gmail.com" channel="Test Chat"/>}
           />
         </Routes>
       </BrowserRouter>
