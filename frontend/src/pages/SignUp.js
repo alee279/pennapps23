@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Select } from 'antd';
+import { ExclamationCircleFilled } from '@ant-design/icons'
 
 import options from '../languageOptions';
 
@@ -31,6 +32,7 @@ const SignUp = () => {
         });
 
         const json = await response.json();
+        console.log(json);
 
         if (!response.ok) {
             setIsLoading(false);
@@ -39,8 +41,8 @@ const SignUp = () => {
 
         if (response.ok) {
             // save the user to local storage
+            console.log(json);
             localStorage.setItem('user', JSON.stringify(json)); 
-
             setIsLoading(false);
         }
     }
@@ -50,7 +52,7 @@ const SignUp = () => {
 
     return (
         <div className="signup-page">
-            <form className='signup-form' onSubmit={handleSubmit}>
+            <form className='signup-form' onSubmit={handleSubmit} noValidate>
                 <h1>Sign Up!</h1>
                 <label>Username:</label>
                 <input 
@@ -91,7 +93,7 @@ const SignUp = () => {
                     options={options}
                 />
                 <button disabled={isLoading}>Sign up</button>
-
+                {error && <div className="error"><ExclamationCircleFilled className="exclamation-error"/> {error}</div>}
             </form>
         </div>
     )
