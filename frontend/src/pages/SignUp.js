@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Select } from 'antd';
 import { ExclamationCircleFilled } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
 
 import options from '../languageOptions';
 
@@ -45,6 +46,7 @@ const SignUp = () => {
             localStorage.setItem('user', JSON.stringify(json)); 
             setIsLoading(false);
         }
+        window.location.replace('http://localhost:3000/home');
     }
 
     
@@ -92,7 +94,10 @@ const SignUp = () => {
                     style={{ width: '100%' }}
                     options={options}
                 />
-                <button disabled={isLoading}>Sign up</button>
+                <div className="buttons">
+                    <button disabled={isLoading}>Sign up</button>
+                    <Link to="/login">Have an account?</Link>
+                </div>
                 {error && <div className="error"><ExclamationCircleFilled className="exclamation-error"/> {error}</div>}
             </form>
         </div>

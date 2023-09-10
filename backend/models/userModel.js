@@ -41,4 +41,24 @@ UserSchema.statics.signup = async function(username, email, password, fluentLang
     return user;
 }
 
+UserSchema.statics.login = async function(email, password) {
+    // validation
+    if (!email || !password) {
+
+        throw Error('All fields must filled');
+    }
+    if (!validator.isEmail(email)) {
+        throw Error('Email is not valid');
+    }
+
+    const user = await this.findOne({ email, password });
+
+    if (!user) {
+        throw Error('Incorrect Email or Password!');
+    }
+
+    return user;
+}
+
+
 module.exports = mongoose.model('User', UserSchema);
