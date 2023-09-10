@@ -42,7 +42,7 @@ export default function AppBar() {
         onMouseOver={(e) => (e.target.style.textDecoration = 'none')}
         onMouseOut={(e) => (e.target.style.textDecoration = 'none')}
       >
-        YABBLE
+        YAPPLE
         </a>
         {user && (
         <Button type="primary" danger onClick={handleClick}>

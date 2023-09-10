@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Login from './pages/Login'
 import ChatPage from './pages/Chat';
+import ProfilePage from './pages/Profile';
 
 function App(props) {
   const [user, setUser] = useState(null);
@@ -35,6 +36,9 @@ function App(props) {
           />
           <Route path="/chat"
                  element={<ChatPage user={user}/>}
+          />
+          <Route path="/profile"
+                 element={<ProfilePage user={user}/>}
           />
           <Route path="/login"
                  element={user === null ? <Login/> :  <Navigate to='/home'/>}
