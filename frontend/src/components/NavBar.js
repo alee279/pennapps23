@@ -12,6 +12,7 @@ export default function AppBar() {
       alignItems: 'center',
       backgroundColor: '#D9D9D9FF', // Replace with your secondary color
       padding: '24px', // Increase padding for more height
+      height: '12vh'
     },
     headerButton: {
       display: 'flex',
@@ -25,7 +26,7 @@ export default function AppBar() {
       lineHeight: '10px',
       fontSize: '36px', // Increase font size
       color: 'black', // Set the text color to black
-      margin: 0, // Remove default margin
+      margin: 'auto', // Remove default margin
     }
   };
 
@@ -35,21 +36,27 @@ export default function AppBar() {
   }
 
   return (
-    <div>
-      <Header style={user !== null ? customStyles.header : customStyles.headerButton}>
-      <a href={`http://localhost:3000/home`}
-        style={customStyles.h1}
-        onMouseOver={(e) => (e.target.style.textDecoration = 'none')}
-        onMouseOut={(e) => (e.target.style.textDecoration = 'none')}
-      >
-        YAPPLE
-        </a>
-        {user && (
-        <Button type="primary" danger onClick={handleClick}>
-          Logout
-        </Button>
-        )}
-      </Header>
-    </div>
+<div>
+  <Header style={user !== null ? customStyles.header : customStyles.headerButton}>
+    <a
+      href={`http://localhost:3000/home`}
+      style={{
+        ...customStyles.h1,
+        padding: '24px', // Add padding to the top and bottom
+      }}
+      onMouseOver={(e) => (e.target.style.textDecoration = 'none')}
+      onMouseOut={(e) => (e.target.style.textDecoration = 'none')}
+    >
+      YAPPLE
+      <p style={{ fontSize: '12px', color: 'gray' }}>for Multilingual Yappers</p>
+    </a>
+    {user && (
+      <Button type="primary" danger onClick={handleClick}>
+        Logout
+      </Button>
+    )}
+  </Header>
+</div>
+
   );
 }
