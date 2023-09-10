@@ -14,8 +14,9 @@ export default function AppBar() {
       padding: '24px', // Increase padding for more height
     },
     h1: {
-      fontFamily: 'helvetica',
-      fontWeight: '300x', // Set the font weight to bold
+      fontFamily: 'BlinkMacSystemFont',
+      fontWeight: 'bolder', // Set the font weight to bold
+      lineHeight: '10px',
       fontSize: '36px', // Increase font size
       color: 'black', // Set the text color to black
       margin: 0, // Remove default margin
@@ -25,7 +26,13 @@ export default function AppBar() {
   return (
     <div>
       <Header style={customStyles.header}>
-        <h1 style={customStyles.h1}>YABBLE</h1>
+      <a href={`http://localhost:3000/home`}
+        style={customStyles.h1}
+        onMouseOver={(e) => (e.target.style.textDecoration = 'none')}
+        onMouseOut={(e) => (e.target.style.textDecoration = 'none')}
+      >
+            YABBLE
+        </a>
         <Button type="primary" danger>
           Logout
         </Button>

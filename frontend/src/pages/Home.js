@@ -66,7 +66,6 @@ export default function Home(props) {
 
   return (
     <div>
-      <h1>YABBLE</h1>
       <div className="user-cards">
         {usersGrouped.map((userGroup, index) => (
           <Row key={index} gutter={16} style={{ marginBottom: '20px' }}>
