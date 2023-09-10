@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import NavBar from './components/NavBar';
 
 // Pages
 import SignUp from './pages/SignUp';
@@ -17,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <NavBar></NavBar>
       <div className="pages">
         <Routes>
           <Route path="/"

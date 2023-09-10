@@ -65,7 +65,7 @@ export default function Home(props) {
   }
 
   return (
-    <div className="home">
+    <div>
       <h1>YABBLE</h1>
       <div className="user-cards">
         {usersGrouped.map((userGroup, index) => (
@@ -82,7 +82,20 @@ export default function Home(props) {
                     >
                       {u.username.charAt(0)}
                     </div>
-                    <div style={customStyles.username}>{u.username}</div>
+                    <div style={customStyles.username}>
+                    <a
+                      href={`http://localhost:3000/chat?chattingwith=${u.username}`}
+                      style={{
+                        color: 'black', // Text color when not hovered
+                        textDecoration: 'none', // Remove default underline
+                        transition: 'color 0.3s, text-decoration 0.3s', // Transition effect
+                      }}
+                      onMouseOver={(e) => (e.target.style.textDecoration = 'underline')}
+                      onMouseOut={(e) => (e.target.style.textDecoration = 'none')}
+                    >
+                         {u.username}
+                      </a>
+                      </div>
                   </div>
                   <p>
                     <strong>Fluent Languages:</strong>
