@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 // Pages
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
+import Login from './pages/Login'
 import ChatPage from './pages/Chat';
 import Login from './pages/Login';
 
@@ -38,6 +39,9 @@ function App(props) {
           />
           <Route path="/login"
                  element={user === null ? <Login/> :  <Navigate to='/home'/>}
+          />
+          <Route path='/login'
+                 element={<Login/>}
           />
         </Routes>
       </div>

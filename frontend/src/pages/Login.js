@@ -26,7 +26,6 @@ const Login = () => {
 
         if (response.ok) {
             // save the user to local storage
-            console.log(json);
             localStorage.setItem('user', JSON.stringify(json)); 
             setIsLoading(false);
         }
@@ -37,7 +36,6 @@ const Login = () => {
         <div className="signup-page">
             <form className='signup-form' onSubmit={handleSubmit} noValidate>
                 <h1>Login!</h1>
-
                 <label>Email:</label>
                 <input 
                     type="email"
