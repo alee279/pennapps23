@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 // Pages
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
+import Login from './pages/Login'
 import ChatPage from './pages/Chat';
 
 function App() {
@@ -36,6 +37,9 @@ function App() {
           />
           <Route path="/chat"
                  element={<ChatPage/>}
+          />
+          <Route path='/login'
+                 element={<Login/>}
           />
         </Routes>
       </div>
