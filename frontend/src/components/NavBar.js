@@ -25,7 +25,7 @@ export default function AppBar() {
   return (
     <div>
       <Header style={customStyles.header}>
-        <h1 style={customStyles.h1}>YABBLE</h1>
+        <Link to='/home' style={customStyles.h1}>YABBLE</Link>
         <Button type="primary" danger>
           Logout
         </Button>
