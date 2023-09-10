@@ -11,12 +11,12 @@ const ChatPage = () => {
     
     useEffect(() => {
         const getChatLog = async () => {
-            const response = await fetch('http://localhost:4000/chat/getChatLog', {
+            let response = await fetch('http://localhost:4000/chat/getChatLog', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ userOne: user, userTwo: chattingUser })
                 });
-            const json = await response.json();
+            let json = await response.json();
             if (response.ok) {
                 setChatId(json.chatId);
                 setMessages([...messages, ...json.messages]);
@@ -38,7 +38,6 @@ const ChatPage = () => {
 
     useEffect(() => {
         const getUpdatedLogs = async () => {
-        console.log(shouldUpdate)
             if (setShouldUpdate) {
                 const objDiv = document.getElementById("chatbox");
                 objDiv.scrollTop = objDiv.scrollHeight;

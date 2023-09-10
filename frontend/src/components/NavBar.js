@@ -33,6 +33,7 @@ export default function AppBar() {
       >
             YABBLE
         </a>
+        <Link to='/home' style={customStyles.h1}>YABBLE</Link>
         <Button type="primary" danger>
           Logout
         </Button>
