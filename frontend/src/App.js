@@ -7,7 +7,6 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Login from './pages/Login'
 import ChatPage from './pages/Chat';
-import Login from './pages/Login';
 
 function App(props) {
   const [user, setUser] = useState(null);
