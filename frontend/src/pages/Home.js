@@ -64,6 +64,7 @@ export default function Home(props) {
 
   return (
     <div>
+        {users.length === 0 ? (<h1>{'No Matches :('}</h1>) :
       <div className="user-cards">
         {usersGrouped.map((userGroup, index) => (
           <Row key={index} gutter={16} style={{ marginBottom: '20px' }}>
@@ -133,6 +134,8 @@ export default function Home(props) {
           </Row>
         ))}
       </div>
+    }   
     </div>
+    
   );
 }
