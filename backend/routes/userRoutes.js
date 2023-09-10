@@ -5,7 +5,8 @@ const User = require('../models/userModel');
 const  {
     signupUser,
     getUsers,
-    getUserInfo
+    getUserInfo,
+    loginUser
 } = require('../controllers/userController');
 
 const router = express.Router();
