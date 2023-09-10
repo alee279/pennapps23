@@ -38,11 +38,11 @@ const ChatPage = () => {
 
     useEffect(() => {
         const getUpdatedLogs = async () => {
+            console.log(shouldUpdate);
             if (setShouldUpdate) {
                 const objDiv = document.getElementById("chatbox");
                 objDiv.scrollTop = objDiv.scrollHeight;
                 setShouldUpdate(false);
-                console.log(message);
                 if (!message.replace(/\s/g, '').length) {
                     setMessage('');
                     return;
@@ -53,6 +53,28 @@ const ChatPage = () => {
         }
         getUpdatedLogs();
     }, [shouldUpdate]);
+
+    useEffect(() => {
+            
+        const interval = setInterval(async () => {
+            const response = await fetch('http://localhost:4000/chat/getChatLog', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ userOne: user, userTwo: chattingUser })
+                });
+            const json = await response.json();
+            if (response.ok) {
+                setChatId(json.chatId);
+                const newMessages = [...json.messages];
+                if (newMessages.length > messages.length) {
+                    const objDiv = document.getElementById("chatbox");
+                    objDiv.scrollTop = objDiv.scrollHeight;
+                    setMessages([...json.messages]);
+                }
+            }
+        }, 1000);
+        return () => clearInterval(interval);
+      }, []);
 
     const handleSubmit = async (e) => {
         console.log(shouldUpdate)
