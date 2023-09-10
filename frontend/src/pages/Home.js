@@ -105,7 +105,6 @@ export default function Home(props) {
                           style={{
                             ...customStyles.button,
                           }}
-                          disabled
                           key={language}
                         >
                           {language}

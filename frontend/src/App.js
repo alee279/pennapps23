@@ -11,12 +11,8 @@ function App() {
   const [user, setUser] = useState('null');
   
   useEffect(() => {
-    let user = null;
-    if (localStorage.getItem('user')) {
-        user = JSON.parse(localStorage.getItem('user'));
-    }
+    const user = JSON.parse(localStorage.getItem('user'));
     setUser(user);
-    console.log(user);
   }, []);
 
   return (
@@ -35,7 +31,7 @@ function App() {
                  element={<Home/>}
           />
           <Route path="/chat"
-                 element={<ChatPage/>}
+                 element={<ChatPage email="test@gmail.com" channel="Test Chat"/>}
           />
         </Routes>
       </div>

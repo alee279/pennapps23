@@ -32,7 +32,7 @@ export default function AppBar() {
         onMouseOut={(e) => (e.target.style.textDecoration = 'none')}
       >
         </a>
-        <Link to='/home' style={customStyles.h1}>YABBLE</Link>
+        <Link to='/home' style={customStyles.h1}>YAPPLE</Link>
         <Button type="primary" danger>
           Logout
         </Button>

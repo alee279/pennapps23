@@ -12,6 +12,26 @@ const signupUser = async (req, res) => {
     }
 }
 
+const getUserInfo = async (req, res) => {
+    var username = req.params.username;
+
+    try {
+        const user = await User.find({"username": username});
+        if (user.length == 0) {
+            throw Error("User does not exist");
+        }
+        console.log(user);
+        const userFluentLanguage = user[0].fluentLanguage;
+        const userLearningLanguage = user[0].learningLanguage;
+        console.log(userFluentLanguage);
+        console.log(userLearningLanguage);
+        res.status(200).json(user);
+    } catch (error) {
+        console.log(error.message);
+        res.status(400).json({error: error.message});
+    }
+}
+
 const getUsers = async (req, res) => {
     var username = req.params.username;
 
@@ -47,5 +67,6 @@ const getUsers = async (req, res) => {
 
 module.exports = {
     signupUser,
-    getUsers
+    getUsers,
+    getUserInfo
 };
