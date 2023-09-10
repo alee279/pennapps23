@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Row, Col } from 'antd';
 
 export default function Home(props) {
-  const [username, setUsername] = useState('name2');
   const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const username = localStorage.getItem('user') !== null ? JSON.parse(localStorage.getItem('user')).username : null;
 
   useEffect(() => {
     const getMatchingUsers = async () => {
       setUsers([]);
-      setIsLoading(true);
       const response = await fetch('http://localhost:4000/users/' + username);
       const json = await response.json();
       if (response.ok) {

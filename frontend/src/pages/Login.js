@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ExclamationCircleFilled } from '@ant-design/icons'
-
+import { Link } from 'react-router-dom'
 
 const Login = () => {
     const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ const Login = () => {
         const response = await fetch('http://localhost:4000/users/login', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ email, password})
+            body: JSON.stringify({email, password})
         });
 
         const json = await response.json();
@@ -29,6 +29,7 @@ const Login = () => {
             localStorage.setItem('user', JSON.stringify(json)); 
             setIsLoading(false);
         }
+        window.location.replace('http://localhost:3000/home');
     }
 
     return (
@@ -48,7 +49,10 @@ const Login = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                 />
-                <button disabled={isLoading}>Login</button>
+                <div className="buttons">
+                    <button disabled={isLoading}>Login</button>
+                    <Link to="/signup">Don't have an account?</Link>
+                </div>
                 {error && <div className="error"><ExclamationCircleFilled className="exclamation-error"/> {error}</div>}
             </form>
         </div>

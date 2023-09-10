@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 const ChatPage = () => {
 
     const chattingUser = window.location.search.substring(1).split('=')[1];
-    const user = 'testUserTwo';
+    const user = localStorage.getItem('user') !== null ? JSON.parse(localStorage.getItem('user')).username : null;
     const [messages, setMessages] = useState([]);
     const [chatId, setChatId] = useState(null);
     const [message, setMessage] = useState('');
