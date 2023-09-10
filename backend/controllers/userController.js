@@ -12,7 +12,7 @@ const signupUser = async (req, res) => {
     }
 }
 
-const loginUser = async (res, req) => {
+const loginUser = async (req, res) => {
     const {email, password} = req.body;
 
     try {
