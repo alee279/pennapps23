@@ -11,24 +11,24 @@ const ChatPage = () => {
     
     useEffect(() => {
         const getChatLog = async () => {
-            let response = await fetch('http://localhost:4000/chat/getChatLog', {
+            const response = await fetch('http://localhost:4000/chat/getChatLog', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ userOne: user, userTwo: chattingUser })
                 });
-            let json = await response.json();
+            const json = await response.json();
             if (response.ok) {
                 setChatId(json.chatId);
                 setMessages([...messages, ...json.messages]);
             } else {
-                response = await fetch('http://localhost:4000/chat/create', {
+                const responseTwo = await fetch('http://localhost:4000/chat/create', {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify({ userOne: user, userTwo: chattingUser })
                 });
-                json = response.json();
-                if (response.ok) {
-                    setChatId(json.chatId);
+                const jsonTwo= responseTwo.json();
+                if (responseTwo.ok) {
+                    setChatId(jsonTwo.chatId);
                     setMessages([]);
                 }
             }
@@ -77,7 +77,7 @@ const ChatPage = () => {
             <h1 id="chat-header">Chatting with {chattingUser}</h1>
             <div className="chat-page">
                 <div className="chatbox" id='chatbox'>
-                    {messages.map((m) => (<div className={m.user == user ? 'user message' : 'chatter message'}><p>{m.message}</p></div>))}
+                    {messages.map((m) => (<div className={m.user === user ? 'user message' : 'chatter message'}><p>{m.message}</p></div>))}
                 </div>
                 <div className="send-message">
                     <form onSubmit={handleSubmit}>
