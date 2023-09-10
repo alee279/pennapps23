@@ -1,11 +1,10 @@
 import React from 'react';
 import { Layout, Button } from 'antd';
-import { Link } from 'react-router-dom';
 
 const { Header } = Layout;
 
-export default function AppBar(props) {
-  const user = props.user;
+export default function AppBar() {
+  const user = localStorage.getItem('user') !== null ? JSON.parse(localStorage.getItem('user')).username : null;
   const customStyles = {
     header: {
       display: 'flex',
@@ -30,9 +29,14 @@ export default function AppBar(props) {
     }
   };
 
+  const handleClick = () => {
+    localStorage.removeItem('user');
+    window.location.replace('http://localhost:3000/login');
+  }
+
   return (
     <div>
-      <Header style={user === null ? customStyles.header : customStyles.headerButton}>
+      <Header style={user !== null ? customStyles.header : customStyles.headerButton}>
       <a href={`http://localhost:3000/home`}
         style={customStyles.h1}
         onMouseOver={(e) => (e.target.style.textDecoration = 'none')}
@@ -41,7 +45,7 @@ export default function AppBar(props) {
         YABBLE
         </a>
         {user && (
-        <Button type="primary" danger>
+        <Button type="primary" danger onClick={handleClick}>
           Logout
         </Button>
         )}

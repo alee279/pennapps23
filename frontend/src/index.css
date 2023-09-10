@@ -156,3 +156,16 @@ div.error {
   border-radius: 10px;
   word-wrap: break-word;
 }
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.buttons a {
+  margin-top: 15px;
+  text-decoration: none;
+  color: black;
+  text-decoration-line: underline;
+}

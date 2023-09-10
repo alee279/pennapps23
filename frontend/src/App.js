@@ -6,15 +6,17 @@ import NavBar from './components/NavBar';
 import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import ChatPage from './pages/Chat';
+import Login from './pages/Login';
 
-function App() {
+function App(props) {
   const [user, setUser] = useState(null);
   
   useEffect(() => {
     if (localStorage.getItem('user')) {
         setUser(JSON.parse(localStorage.getItem('user')));
     }
-  }, []);
+    console.log(user);
+}, []);
 
   return (
     <div className="App">
@@ -29,10 +31,13 @@ function App() {
                  element={user === null ? <SignUp/> :  <Navigate to='/home'/>}
           />
           <Route path="/home"
-                 element={<Home/>}
+                 element={user !== null ? <Home user={user}/> : <Navigate to='/signup'/>}
           />
           <Route path="/chat"
-                 element={<ChatPage/>}
+                 element={<ChatPage user={user}/>}
+          />
+          <Route path="/login"
+                 element={user === null ? <Login/> :  <Navigate to='/home'/>}
           />
         </Routes>
       </div>
