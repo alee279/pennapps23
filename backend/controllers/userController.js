@@ -12,6 +12,19 @@ const signupUser = async (req, res) => {
     }
 }
 
+const loginUser = async (req, res) => {
+    const {email, password} = req.body;
+
+    try {
+        const user = await User.login(email, password);
+        res.status(200).json(user);
+    } catch (error) {
+        console.log(error.message);
+        res.status(400).json({error: error.message});
+    }
+}
+
+
 const getUserInfo = async (req, res) => {
     var username = req.params.username;
 
@@ -67,6 +80,7 @@ const getUsers = async (req, res) => {
 
 module.exports = {
     signupUser,
+    loginUser,
     getUsers,
     getUserInfo
 };
