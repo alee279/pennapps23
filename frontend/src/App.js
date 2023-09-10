@@ -8,28 +8,25 @@ import Home from './pages/Home';
 import ChatPage from './pages/Chat';
 
 function App() {
-  const [user, setUser] = useState('null');
+  const [user, setUser] = useState(null);
   
   useEffect(() => {
-    let user = null;
     if (localStorage.getItem('user')) {
-        user = JSON.parse(localStorage.getItem('user'));
+        setUser(JSON.parse(localStorage.getItem('user')));
     }
-    setUser(user);
-    console.log(user);
   }, []);
 
   return (
     <div className="App">
       <BrowserRouter>
-      <NavBar></NavBar>
+      <NavBar user={user}></NavBar>
       <div className="pages">
         <Routes>
           <Route path="/"
-                 element={user ? <Navigate to='/home'/> : <SignUp/> }
+                 element={user === null ? <SignUp/> :  <Navigate to='/home'/>}
           />
           <Route path="/signup"
-                 element={<SignUp/>}
+                 element={user === null ? <SignUp/> :  <Navigate to='/home'/>}
           />
           <Route path="/home"
                  element={<Home/>}
