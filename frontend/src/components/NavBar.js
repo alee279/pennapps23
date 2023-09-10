@@ -31,7 +31,6 @@ export default function AppBar() {
         onMouseOver={(e) => (e.target.style.textDecoration = 'none')}
         onMouseOut={(e) => (e.target.style.textDecoration = 'none')}
       >
-            YABBLE
         </a>
         <Link to='/home' style={customStyles.h1}>YABBLE</Link>
         <Button type="primary" danger>
